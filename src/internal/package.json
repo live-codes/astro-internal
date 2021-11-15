@@ -1,0 +1,6 @@
+{
+  "name": "@hatemhosny/astro-internal",
+  "version": "0.0.3",
+  "private": false,
+  "main": "index.js"
+}

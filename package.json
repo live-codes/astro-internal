@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "node -r esbuild-register scripts/build.ts --watch",
     "build": "node -r esbuild-register scripts/build.ts",
+    "build-internal": "node -r esbuild-register scripts/build-internal.ts",
+    "publish-internal": "npm run build-internal && cd dist/internal && npm publish",
     "prestart": "npm run build",
     "start": "npx serve dist"
   },
