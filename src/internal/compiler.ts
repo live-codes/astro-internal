@@ -2,7 +2,7 @@ import { renderPage } from '../@astro/internal';
 export * from '@astrojs/compiler';
 
 export async function renderAstroToHTML(content: string): Promise<string | { errors: string[] }> {
-  const url = `data:application/javascript;base64,${Buffer.from(content).toString('base64')}`;
+  const url = `data:application/javascript;base64,${globalThis.Buffer ? Buffer.from(content).toString('base64') : btoa(content)}`;
   let mod;
   let html;
   try {
@@ -19,6 +19,12 @@ export async function renderAstroToHTML(content: string): Promise<string | { err
   try {
     html = await renderPage(
       {
+        _metadata: {
+          // renderers: [],
+          // pathname: '',
+          experimentalStaticBuild: false,
+        },
+        links: new Set(),
         styles: new Set(),
         scripts: new Set(),
         /** This function returns the `Astro` faux-global */
@@ -28,6 +34,9 @@ export async function renderAstroToHTML(content: string): Promise<string | { err
           return {
             __proto__: astroGlobal,
             props,
+            // fetchContent,
+            //  resolve,
+            //   site
             request: {
               canonicalURL,
               params: {},

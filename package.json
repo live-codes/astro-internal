@@ -6,7 +6,7 @@
   "scripts": {
     "predev": "npm run prepare-shiki",
     "dev": "tsm scripts/build.ts --watch",
-    "prepare-shiki": "rm -rf public/shiki && mkdir public/shiki && cp -r node_modules/shiki public",
+    "prepare-shiki": "cp -r node_modules/shiki public",
     "prebuild": "npm run prepare-shiki",
     "build": "tsm scripts/build.ts",
     "build-internal": "tsm scripts/build-internal.ts",

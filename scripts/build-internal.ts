@@ -26,8 +26,6 @@ import { copyFile, rm } from 'fs/promises';
       '.wasm': 'file',
     },
 
-    inject: ['./scripts/shims/node.js'],
-
     plugins: [WEB_WORKER()],
   };
 
